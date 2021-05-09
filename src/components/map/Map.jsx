@@ -76,6 +76,7 @@ const Map = () => {
     refs.buildingsRef.current = new OSMBuildings(refs.mapRef.current).load(
       'https://{s}.data.osmbuildings.org/0.2/anonymous/tile/{z}/{x}/{y}.json'
     )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   //Map Events:
@@ -83,6 +84,7 @@ const Map = () => {
     refs.mapRef.current.on('locationfound', (event) => {
       setStartPoint([event.latlng.lat, event.latlng.lng])
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Controls:
@@ -142,6 +144,7 @@ const Map = () => {
       },
       waypoints: [startPoint, endPoint],
     }).addTo(refs.mapRef.current)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Set routing waypoints:
@@ -215,6 +218,7 @@ const Map = () => {
         )
       )
       .addTo(refs.mapRef.current)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
