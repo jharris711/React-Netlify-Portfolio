@@ -5,16 +5,11 @@ import {
   Drawer,
   List,
   Divider,
-  Icon,
-  IconButton,
   ListItem,
-  ListItemIcon,
   ListItemText,
   Typography,
-  Grid,
   Link,
 } from '@material-ui/core'
-import { Inbox, Code, GitHub, LinkedIn } from '@material-ui/icons'
 import pupsImage from '../assets/images/pups.jpeg'
 
 const drawerWidth = 240
@@ -42,36 +37,6 @@ const useStyles = makeStyles((theme) => ({
 
 const NavDrawer = () => {
   const classes = useStyles()
-
-  const socialIcons = (type) => {
-    switch (type) {
-      case 'About':
-        return
-      case 'LinkedIn':
-        return <LinkedIn />
-      case 'Blog':
-        return <Icon className='fab fa-medium' />
-      case 'Demos':
-        return <Code />
-      case 'StackOverflow':
-        return (
-          <div
-            style={{
-              alignItems: 'center',
-              alignContent: 'center',
-              justifyContent: 'center',
-              justifyItems: 'center',
-            }}
-          >
-            <Icon className='fab fa-stack-overflow' />
-          </div>
-        )
-      case 'GitHub':
-        return <GitHub />
-      default:
-        return
-    }
-  }
 
   return (
     <Drawer

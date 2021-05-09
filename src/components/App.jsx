@@ -1,14 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core'
-import {
-  Container,
-  Grid,
-  Paper,
-  Typography,
-  Card,
-  CardMedia,
-  CardActionArea,
-} from '@material-ui/core'
+import { Container, Grid, Paper } from '@material-ui/core'
 
 import NavDrawer from './NavDrawer'
 import Map from './map/Map'

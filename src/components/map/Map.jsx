@@ -19,17 +19,13 @@ import '../../assets/css/dialog.css'
 
 import '../../assets/css/OSMBuildings.css'
 
-import moment from 'moment'
-import { Container, Typography, Button } from '@material-ui/core'
-
 const OSMBuildings = window.OSMBuildings
 
 const Map = () => {
   // State:
-  const [location, setLocation] = useState(L.latLng(38.9907, -77.0261))
   const [startPoint, setStartPoint] = useState([38.996874, -77.027574])
   const [endPoint, setEndPoint] = useState([38.897327, -77.020961])
-  // console.log(OSMBuildings)
+
   // Refs:
   const refs = {
     mapRef: useRef(null),
@@ -65,7 +61,7 @@ const Map = () => {
   // Map Creation:
   useEffect(() => {
     const mapParams = {
-      center: location,
+      center: L.latLng(38.9907, -77.0261),
       zoom: 16,
       zoomControl: false,
       maxBounds: L.latLngBounds(L.latLng(-150, -240), L.latLng(150, 240)),
@@ -85,8 +81,6 @@ const Map = () => {
   //Map Events:
   useEffect(() => {
     refs.mapRef.current.on('locationfound', (event) => {
-      //  console.log(event.latlng)
-      setLocation(event.latlng)
       setStartPoint([event.latlng.lat, event.latlng.lng])
     })
   }, [])
@@ -155,7 +149,7 @@ const Map = () => {
     if (refs.routingControlRef.current) {
       refs.routingControlRef.current.setWaypoints([startPoint, endPoint])
     }
-  }, [startPoint, endPoint])
+  }, [refs.routingControlRef, startPoint, endPoint])
 
   // Dialog box:
   useEffect(() => {
