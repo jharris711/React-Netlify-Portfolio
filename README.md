@@ -19,6 +19,7 @@
     "leaflet-dialog": "^1.0.5",
     "leaflet-routing-machine": "^3.2.12",
     "leaflet.locatecontrol": "^0.73.0",
+    "notistack": "^1.0.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",

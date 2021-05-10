@@ -1,51 +1,13 @@
-import React, { useRef, useEffect, useState } from 'react'
-import { makeStyles, useMediaQuery } from '@material-ui/core'
-import { Container, Grid, Paper } from '@material-ui/core'
+import React, { useState } from 'react'
+import { useMediaQuery } from '@material-ui/core'
+import { Grow } from '@material-ui/core'
 import { CssBaseline } from '@material-ui/core'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
+import { SnackbarProvider } from 'notistack'
 
-import NavDrawer from './NavDrawer'
-import Map from './map/Map'
-
-const drawerWidth = 240
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  paper: {
-    height: '94vh',
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.deault,
-    width: '100%',
-  },
-  appBar: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-  },
-  content: {
-    position: 'relative',
-    left: 240,
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    height: '100vh',
-  },
-  media: {
-    height: '100%',
-  },
-}))
-
-const containerStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-}))
+import Main from './Main'
 
 const App = () => {
-  const classes = useStyles()
-  const containerClasses = containerStyles()
-  const mapDivRef = useRef(null)
   const [mapDivHeight, setMapDivHeight] = useState(null)
   const [lightOrDark, setLightOrDark] = useState(null)
 
@@ -64,51 +26,27 @@ const App = () => {
     },
   })
 
-  const toggleLightOrDark = (event) => {
-    const mode = event.currentTarget.value
-    localStorage.setItem('mode', mode)
-    setLightOrDark(mode)
-  }
-
-  useEffect(() => {
-    const mode = localStorage.getItem('mode')
-    if (mode) {
-      setLightOrDark(mode)
-    } else {
-      setLightOrDark('user')
-    }
-  }, [])
-
-  useEffect(() => {
-    mapDivRef.current = document.getElementById('mapDiv')
-    var h = mapDivRef.current.clientHeight
-    setMapDivHeight(h)
-  }, [])
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <div className={classes.root}>
-        <main className={classes.content}>
-          <Container className={containerClasses.root}>
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <Paper className={classes.paper} id='mapDiv'>
-                  <Map
-                    height={mapDivHeight}
-                    lightOrDark={lightOrDark}
-                    prefersDarkMode={prefersDarkMode}
-                  />
-                </Paper>
-              </Grid>
-            </Grid>
-          </Container>
-        </main>
-        <NavDrawer
+      <SnackbarProvider
+        maxSnack={3}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        // preventDuplicate
+        autoHideDuration={3000}
+        TransitionComponent={Grow}
+      >
+        <Main
+          prefersDarkMode={prefersDarkMode}
+          mapDivHeight={mapDivHeight}
+          setMapDivHeight={setMapDivHeight}
           lightOrDark={lightOrDark}
-          toggleLightOrDark={toggleLightOrDark}
+          setLightOrDark={setLightOrDark}
         />
-      </div>
+      </SnackbarProvider>
     </ThemeProvider>
   )
 }

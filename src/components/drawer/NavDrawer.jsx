@@ -21,7 +21,7 @@ import {
   AccountCircle,
 } from '@material-ui/icons'
 import { SiNetlify } from 'react-icons/si'
-import pupsImage from '../assets/images/pups.jpeg'
+import pupsImage from '../../assets/images/pups.jpeg'
 
 const drawerWidth = 240
 
