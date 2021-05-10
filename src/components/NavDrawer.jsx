@@ -10,6 +10,9 @@ import {
   Typography,
   Link,
 } from '@material-ui/core'
+// npm install --save-dev @iconify/react @iconify-icons/logos
+import { Icon, InlineIcon } from '@iconify/react'
+import netlifyIcon from '@iconify-icons/logos/netlify'
 import pupsImage from '../assets/images/pups.jpeg'
 
 const drawerWidth = 240
@@ -61,9 +64,13 @@ const NavDrawer = () => {
           target='_blank'
           color='inherit'
           onClick={(event) => event.preventDefault}
+          style={{ textDecoration: 'none' }}
         >
           <ListItem button key={'Demos'}>
-            <ListItemText primary={'Demos'} />
+            <ListItemText
+              primary={'Stack Blitz'}
+              secondary={'Demos & Projects'}
+            />
           </ListItem>
         </Link>
         <Link
@@ -71,9 +78,10 @@ const NavDrawer = () => {
           target='_blank'
           color='inherit'
           onClick={(event) => event.preventDefault}
+          style={{ textDecoration: 'none' }}
         >
           <ListItem button key={'LinkedIn'}>
-            <ListItemText primary={'LinkedIn'} />
+            <ListItemText primary={'LinkedIn'} secondary={'Work History'} />
           </ListItem>
         </Link>
         <Link
@@ -81,9 +89,10 @@ const NavDrawer = () => {
           target='_blank'
           color='inherit'
           onClick={(event) => event.preventDefault}
+          style={{ textDecoration: 'none' }}
         >
           <ListItem button key={'Medium'}>
-            <ListItemText primary={'Medium'} />
+            <ListItemText primary={'Medium'} secondary={`Blogs I've Written`} />
           </ListItem>
         </Link>
         <Link
@@ -91,9 +100,13 @@ const NavDrawer = () => {
           target='_blank'
           color='inherit'
           onClick={(event) => event.preventDefault}
+          style={{ textDecoration: 'none' }}
         >
           <ListItem button key={'StackOverflow'}>
-            <ListItemText primary={'StackOverflow'} />
+            <ListItemText
+              primary={'Stack Overflow'}
+              secondary={'Questions & Answers'}
+            />
           </ListItem>
         </Link>
         <Link
@@ -101,9 +114,10 @@ const NavDrawer = () => {
           target='_blank'
           color='inherit'
           onClick={(event) => event.preventDefault}
+          style={{ textDecoration: 'none' }}
         >
           <ListItem button key={'GitHub'}>
-            <ListItemText primary={'GitHub'} />
+            <ListItemText primary={'GitHub'} secondary={`My Repos`} />
           </ListItem>
         </Link>
       </List>
