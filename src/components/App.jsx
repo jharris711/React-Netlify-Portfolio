@@ -28,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     left: 240,
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
     padding: theme.spacing(3),
     height: '100vh',
   },
@@ -37,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const conatinerStyles = makeStyles((theme) => ({
+const containerStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -45,17 +44,30 @@ const conatinerStyles = makeStyles((theme) => ({
 
 const App = () => {
   const classes = useStyles()
-  const containerClasses = conatinerStyles()
+  const containerClasses = containerStyles()
   const mapDivRef = useRef(null)
   const [mapDivHeight, setMapDivHeight] = useState(null)
+  const [lightOrDark, setLightOrDark] = useState('user')
 
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
 
   const theme = createMuiTheme({
     palette: {
-      type: prefersDarkMode ? 'dark' : 'light',
+      type:
+        lightOrDark === 'user'
+          ? prefersDarkMode
+            ? 'dark'
+            : 'light'
+          : lightOrDark === 'dark'
+          ? 'dark'
+          : 'light',
     },
   })
+
+  const toggleLightOrDark = (event) => {
+    const mode = event.currentTarget.value
+    setLightOrDark(mode)
+  }
 
   useEffect(() => {
     mapDivRef.current = document.getElementById('mapDiv')
@@ -74,6 +86,7 @@ const App = () => {
                 <Paper className={classes.paper} id='mapDiv'>
                   <Map
                     height={mapDivHeight}
+                    lightOrDark={lightOrDark}
                     prefersDarkMode={prefersDarkMode}
                   />
                 </Paper>
@@ -81,7 +94,10 @@ const App = () => {
             </Grid>
           </Container>
         </main>
-        <NavDrawer />
+        <NavDrawer
+          lightOrDark={lightOrDark}
+          toggleLightOrDark={toggleLightOrDark}
+        />
       </div>
     </ThemeProvider>
   )

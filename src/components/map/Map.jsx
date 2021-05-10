@@ -21,8 +21,7 @@ import '../../assets/css/OSMBuildings.css'
 
 const OSMBuildings = window.OSMBuildings
 
-const Map = ({ prefersDarkMode }) => {
-  // prefersDarkMode = true
+const Map = ({ lightOrDark, prefersDarkMode }) => {
   // State:
   const [startPoint, setStartPoint] = useState([38.996874, -77.027574])
   const [endPoint, setEndPoint] = useState([38.897327, -77.020961])
@@ -139,7 +138,14 @@ const Map = ({ prefersDarkMode }) => {
       lineOptions: {
         styles: [
           {
-            color: prefersDarkMode ? '#002984' : '#757de8',
+            color:
+              lightOrDark === 'dark'
+                ? '#002984'
+                : lightOrDark === 'light'
+                ? '#757de8'
+                : prefersDarkMode
+                ? '#002984'
+                : '#757de8',
           },
         ],
       },
@@ -149,14 +155,24 @@ const Map = ({ prefersDarkMode }) => {
     // Apply dark/light mode styles:
     refs.mapCssRef.current.querySelector(
       '.leaflet-routing-container'
-    ).style.backgroundColor = prefersDarkMode
-      ? '#383838'
-      : 'rgba(255, 255, 255, 0.8)'
+    ).style.backgroundColor =
+      lightOrDark === 'dark'
+        ? '#383838'
+        : lightOrDark === 'dark'
+        ? 'rgba(255, 255, 255, 0.8)'
+        : prefersDarkMode
+        ? '#383838'
+        : 'rgba(255, 255, 255, 0.8)'
     refs.mapCssRef.current.querySelector(
       '.leaflet-routing-container'
-    ).style.color = prefersDarkMode
-      ? 'rgba(255, 255, 255, 0.8)'
-      : 'rgba(0, 0, 0, 0.87)'
+    ).style.color =
+      lightOrDark === 'dark'
+        ? 'rgba(255, 255, 255, 0.8)'
+        : lightOrDark === 'light'
+        ? 'rgba(0, 0, 0, 0.87)'
+        : prefersDarkMode
+        ? 'rgba(255, 255, 255, 0.8)'
+        : 'rgba(0, 0, 0, 0.87)'
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -182,11 +198,18 @@ const Map = ({ prefersDarkMode }) => {
       .setContent(
         ReactDOMServer.renderToString(
           <div
+            className={'dialogDiv'}
             style={{
-              alignText: 'center',
-              color: prefersDarkMode
-                ? 'rgba(255, 255, 255, 0.7)'
-                : 'rgba(0, 0, 0, 0.54)',
+              alignText:
+                'center' /* 
+              color:
+                lightOrDark === 'dark'
+                  ? 'rgba(255, 255, 255, 0.8)'
+                  : lightOrDark === 'light'
+                  ? 'rgba(0, 0, 0, 0.8)'
+                  : prefersDarkMode
+                  ? 'rgba(255, 255, 255, 0.7)'
+                  : 'rgba(0, 0, 0, 0.8)', */,
             }}
           >
             <h1>
@@ -242,9 +265,70 @@ const Map = ({ prefersDarkMode }) => {
     // Apply dark/light styles:
     refs.mapCssRef.current.querySelector(
       '.leaflet-control-dialog'
-    ).style.backgroundColor = prefersDarkMode ? '#383838' : 'rgb(249, 249, 249)'
+    ).style.backgroundColor =
+      lightOrDark === 'dark'
+        ? '#383838'
+        : lightOrDark === 'light'
+        ? 'rgb(249, 249, 249)'
+        : prefersDarkMode
+        ? '#383838'
+        : 'rgb(249, 249, 249)'
+    refs.mapCssRef.current.querySelector(
+      '.leaflet-control-dialog-contents'
+    ).style.color =
+      lightOrDark === 'dark'
+        ? 'rgba(255, 255, 255, 0.8)'
+        : lightOrDark === 'light'
+        ? '#383838'
+        : prefersDarkMode
+        ? 'rgba(255, 255, 255, 0.8)'
+        : '#383838 '
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    console.log(lightOrDark)
+    // Apply dark/light mode styles:
+    refs.mapCssRef.current.querySelector(
+      '.leaflet-routing-container'
+    ).style.backgroundColor =
+      lightOrDark === 'dark'
+        ? '#383838'
+        : lightOrDark === 'dark'
+        ? 'rgba(255, 255, 255, 0.8)'
+        : prefersDarkMode
+        ? '#383838'
+        : 'rgba(255, 255, 255, 0.8)'
+    refs.mapCssRef.current.querySelector(
+      '.leaflet-routing-container'
+    ).style.color =
+      lightOrDark === 'dark'
+        ? 'rgba(255, 255, 255, 0.8)'
+        : lightOrDark === 'light'
+        ? 'rgba(0, 0, 0, 0.87)'
+        : prefersDarkMode
+        ? 'rgba(255, 255, 255, 0.8)'
+        : 'rgba(0, 0, 0, 0.87)'
+    // Apply dark/light styles:
+    refs.mapCssRef.current.querySelector(
+      '.leaflet-control-dialog'
+    ).style.backgroundColor =
+      lightOrDark === 'dark'
+        ? '#383838'
+        : lightOrDark === 'light'
+        ? 'rgb(249, 249, 249)'
+        : prefersDarkMode
+        ? '#383838'
+        : 'rgb(249, 249, 249)'
+    refs.mapCssRef.current.querySelector('.dialogDiv').style.color =
+      lightOrDark === 'dark'
+        ? 'rgba(255, 255, 255, 0.7)'
+        : lightOrDark === 'light'
+        ? 'rgba(0, 0, 0, 0.8)'
+        : prefersDarkMode
+        ? 'rgba(255, 255, 255, 0.7)'
+        : 'rgba(0, 0, 0, 0.8)'
+  }, [lightOrDark, prefersDarkMode])
 
   return (
     <>

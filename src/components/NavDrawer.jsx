@@ -11,8 +11,15 @@ import {
   Link,
   Tooltip,
   IconButton,
+  Button,
+  ButtonGroup,
 } from '@material-ui/core'
-import { GitHub } from '@material-ui/icons'
+import {
+  GitHub,
+  BrightnessHigh,
+  Brightness3,
+  AccountCircle,
+} from '@material-ui/icons'
 import { SiNetlify } from 'react-icons/si'
 import pupsImage from '../assets/images/pups.jpeg'
 
@@ -53,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
 }))
 
-const NavDrawer = () => {
+const NavDrawer = ({ lightOrDark, toggleLightOrDark }) => {
   const classes = useStyles()
   const avatarClasses = avatarStyles()
 
@@ -69,9 +76,60 @@ const NavDrawer = () => {
       <div style={{ display: 'flex', justifyContent: 'center', padding: 15 }}>
         <Avatar alt='J. Harris' src={pupsImage} className={classes.image} />
       </div>
-      <Typography variant='h5' align='center' color='textPrimary'>
-        J. Harris Web Dev
-      </Typography>
+      <div
+        style={{
+          textAlign: 'center',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography variant='h5' align='center' color='textPrimary'>
+          J. Harris Web Dev
+        </Typography>
+      </div>
+      <br />
+      <div
+        style={{
+          textAlign: 'center',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <ButtonGroup
+          color='textPrimary'
+          aria-label='outlined textPrimary button group'
+          variant='contained'
+          style={{ alignItems: 'center', justifyContent: 'center' }}
+        >
+          <Tooltip title='Toggle Light Mode'>
+            <Button
+              aria-label='toggle light mode'
+              value='light'
+              onClick={(event) => toggleLightOrDark(event)}
+            >
+              <BrightnessHigh />
+            </Button>
+          </Tooltip>
+          <Tooltip title='Toggle Dark Mode'>
+            <Button
+              aria-label='toggle dark mode'
+              value='dark'
+              onClick={(event) => toggleLightOrDark(event)}
+            >
+              <Brightness3 />
+            </Button>
+          </Tooltip>
+          <Tooltip title='User System Preference'>
+            <Button
+              aria-label='delete'
+              value='user'
+              onClick={(event) => toggleLightOrDark(event)}
+            >
+              <AccountCircle />
+            </Button>
+          </Tooltip>
+        </ButtonGroup>
+      </div>
       <br />
       <Divider />
       <List>
