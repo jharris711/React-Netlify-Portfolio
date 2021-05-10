@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { makeStyles } from '@material-ui/core'
+import { makeStyles, useMediaQuery } from '@material-ui/core'
 import { Container, Grid, Paper } from '@material-ui/core'
+import { CssBaseline } from '@material-ui/core'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 
 import NavDrawer from './NavDrawer'
 import Map from './map/Map'
@@ -47,6 +49,14 @@ const App = () => {
   const mapDivRef = useRef(null)
   const [mapDivHeight, setMapDivHeight] = useState(null)
 
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
+
+  const theme = createMuiTheme({
+    palette: {
+      type: prefersDarkMode ? 'dark' : 'light',
+    },
+  })
+
   useEffect(() => {
     mapDivRef.current = document.getElementById('mapDiv')
     var h = mapDivRef.current.clientHeight
@@ -54,14 +64,18 @@ const App = () => {
   }, [])
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
       <div className={classes.root}>
         <main className={classes.content}>
           <Container className={containerClasses.root}>
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <Paper className={classes.paper} id='mapDiv'>
-                  <Map height={mapDivHeight} />
+                  <Map
+                    height={mapDivHeight}
+                    prefersDarkMode={prefersDarkMode}
+                  />
                 </Paper>
               </Grid>
             </Grid>
@@ -69,7 +83,7 @@ const App = () => {
         </main>
         <NavDrawer />
       </div>
-    </>
+    </ThemeProvider>
   )
 }
 

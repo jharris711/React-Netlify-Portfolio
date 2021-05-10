@@ -1,6 +1,7 @@
 .leaflet-control-dialog {
   position: absolute;
-  background-color: #383838;
+  background-color: rgba(249, 249, 249);
+  color: rgba(0, 0, 0, 0.54);
   padding: 0px;
   border-radius: 4px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
@@ -27,7 +28,7 @@
   padding: 3px;
   font-size: 15px;
   line-height: 15px;
-  color: #ccc;
+  color: rgba(0, 0, 0, 0.54);
 }
 
 .leaflet-control-dialog
@@ -50,7 +51,7 @@
   padding: 2px;
   font-size: 16px;
   line-height: 16px;
-  color: #666;
+  color: rgba(0, 0, 0, 0.54);
 }
 
 .leaflet-control-dialog
@@ -85,7 +86,7 @@
   padding: 2px;
   font-size: 16px;
   line-height: 16px;
-  color: #ccc;
+  color: rgba(0, 0, 0, 0.54);
 }
 
 .leaflet-control-dialog

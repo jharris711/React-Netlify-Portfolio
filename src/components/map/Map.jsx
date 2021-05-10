@@ -21,7 +21,8 @@ import '../../assets/css/OSMBuildings.css'
 
 const OSMBuildings = window.OSMBuildings
 
-const Map = () => {
+const Map = ({ prefersDarkMode }) => {
+  // prefersDarkMode = true
   // State:
   const [startPoint, setStartPoint] = useState([38.996874, -77.027574])
   const [endPoint, setEndPoint] = useState([38.897327, -77.020961])
@@ -29,7 +30,7 @@ const Map = () => {
   // Refs:
   const refs = {
     mapRef: useRef(null),
-    mapTileCssRef: useRef(null),
+    mapCssRef: useRef(null),
     tileRef: useRef(null),
     topoTileRef: useRef(null),
     layersControlRef: useRef(null),
@@ -138,12 +139,24 @@ const Map = () => {
       lineOptions: {
         styles: [
           {
-            color: '#002984',
+            color: prefersDarkMode ? '#002984' : '#757de8',
           },
         ],
       },
       waypoints: [startPoint, endPoint],
     }).addTo(refs.mapRef.current)
+
+    // Apply dark/light mode styles:
+    refs.mapCssRef.current.querySelector(
+      '.leaflet-routing-container'
+    ).style.backgroundColor = prefersDarkMode
+      ? '#383838'
+      : 'rgba(255, 255, 255, 0.8)'
+    refs.mapCssRef.current.querySelector(
+      '.leaflet-routing-container'
+    ).style.color = prefersDarkMode
+      ? 'rgba(255, 255, 255, 0.8)'
+      : 'rgba(0, 0, 0, 0.87)'
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -168,7 +181,14 @@ const Map = () => {
       .dialog(dialogOptions)
       .setContent(
         ReactDOMServer.renderToString(
-          <div style={{ alignText: 'center' }}>
+          <div
+            style={{
+              alignText: 'center',
+              color: prefersDarkMode
+                ? 'rgba(255, 255, 255, 0.7)'
+                : 'rgba(0, 0, 0, 0.54)',
+            }}
+          >
             <h1>
               Hello! I'm Josh, a web developer from Silver Spring, MD. Welcome
               to my portfolio!
@@ -186,19 +206,19 @@ const Map = () => {
               around!
             </h3>
             <ul style={{ listStyle: 'none', padding: 0, margin: '0 auto' }}>
-              <li>
+              <li style={{ fontSize: '1.12em' }}>
                 <strong>Location</strong>: Click the single button with the
                 point marker icon to find your location. This will also set your
                 location as the start point for the routing feature!
               </li>
               <br />
-              <li>
+              <li style={{ fontSize: '1.12em' }}>
                 <strong>Geocoding</strong>: Click the button with the magnifying
                 glass icon to search for a location. This will also set the end
                 point for the routing feature!
               </li>
               <br />
-              <li>
+              <li style={{ fontSize: '1.12em' }}>
                 <strong>Routing</strong>: Initially set to show directions
                 between the AFI Theatre in Silver Spring, MD and the Verizon
                 Center in Washington, DC. You can set the start/end points by
@@ -208,7 +228,7 @@ const Map = () => {
                 the search button.
               </li>
               <br />
-              <li>
+              <li style={{ fontSize: '1.12em' }}>
                 <strong>Toolbar</strong>: A toolbar that allows the user to draw
                 and edit layers, layer snapping, layer dragging, and layer
                 removal.
@@ -218,6 +238,11 @@ const Map = () => {
         )
       )
       .addTo(refs.mapRef.current)
+
+    // Apply dark/light styles:
+    refs.mapCssRef.current.querySelector(
+      '.leaflet-control-dialog'
+    ).style.backgroundColor = prefersDarkMode ? '#383838' : 'rgb(249, 249, 249)'
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -230,7 +255,7 @@ const Map = () => {
           width: '100%',
           height: '100%',
         }}
-        ref={refs.mapTileCssRef}
+        ref={refs.mapCssRef}
       />
     </>
   )
