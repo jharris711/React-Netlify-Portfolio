@@ -328,6 +328,7 @@ const Map = ({ lightOrDark, prefersDarkMode }) => {
         : prefersDarkMode
         ? 'rgba(255, 255, 255, 0.7)'
         : 'rgba(0, 0, 0, 0.8)'
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lightOrDark, prefersDarkMode])
 
   return (
