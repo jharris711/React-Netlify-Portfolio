@@ -9,13 +9,28 @@ import {
   ListItemText,
   Typography,
   Link,
+  Tooltip,
+  IconButton,
 } from '@material-ui/core'
-// npm install --save-dev @iconify/react @iconify-icons/logos
-import { Icon, InlineIcon } from '@iconify/react'
-import netlifyIcon from '@iconify-icons/logos/netlify'
+import { GitHub } from '@material-ui/icons'
+import { SiNetlify } from 'react-icons/si'
 import pupsImage from '../assets/images/pups.jpeg'
 
 const drawerWidth = 240
+
+const avatarStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+  avatar: {
+    backgroundColor: theme.palette.text.secondary,
+  },
+}))
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
 
 const NavDrawer = () => {
   const classes = useStyles()
+  const avatarClasses = avatarStyles()
 
   return (
     <Drawer
@@ -60,27 +76,13 @@ const NavDrawer = () => {
       <Divider />
       <List>
         <Link
-          href='https://stackblitz.com/@jharris711'
-          target='_blank'
-          color='inherit'
-          onClick={(event) => event.preventDefault}
-          style={{ textDecoration: 'none' }}
-        >
-          <ListItem button key={'Demos'}>
-            <ListItemText
-              primary={'Stack Blitz'}
-              secondary={'Demos & Projects'}
-            />
-          </ListItem>
-        </Link>
-        <Link
           href='https://www.linkedin.com/in/joshsharris/'
           target='_blank'
           color='inherit'
           onClick={(event) => event.preventDefault}
           style={{ textDecoration: 'none' }}
         >
-          <ListItem button key={'LinkedIn'}>
+          <ListItem button key={'LinkedIn'} dense>
             <ListItemText primary={'LinkedIn'} secondary={'Work History'} />
           </ListItem>
         </Link>
@@ -91,7 +93,7 @@ const NavDrawer = () => {
           onClick={(event) => event.preventDefault}
           style={{ textDecoration: 'none' }}
         >
-          <ListItem button key={'Medium'}>
+          <ListItem button key={'Medium'} dense>
             <ListItemText primary={'Medium'} secondary={`Blogs I've Written`} />
           </ListItem>
         </Link>
@@ -102,10 +104,24 @@ const NavDrawer = () => {
           onClick={(event) => event.preventDefault}
           style={{ textDecoration: 'none' }}
         >
-          <ListItem button key={'StackOverflow'}>
+          <ListItem button key={'StackOverflow'} dense>
             <ListItemText
               primary={'Stack Overflow'}
               secondary={'Questions & Answers'}
+            />
+          </ListItem>
+        </Link>
+        <Link
+          href='https://stackblitz.com/@jharris711'
+          target='_blank'
+          color='inherit'
+          onClick={(event) => event.preventDefault}
+          style={{ textDecoration: 'none' }}
+        >
+          <ListItem button key={'Demos'} dense>
+            <ListItemText
+              primary={'Stack Blitz'}
+              secondary={'Demos & Projects'}
             />
           </ListItem>
         </Link>
@@ -116,12 +132,50 @@ const NavDrawer = () => {
           onClick={(event) => event.preventDefault}
           style={{ textDecoration: 'none' }}
         >
-          <ListItem button key={'GitHub'}>
+          <ListItem button key={'GitHub'} dense>
             <ListItemText primary={'GitHub'} secondary={`My Repos`} />
           </ListItem>
         </Link>
       </List>
       <Divider />
+      <div className={avatarClasses.root}>
+        <Tooltip title='See the code for this site'>
+          <Link
+            href='https://github.com/jharris711/React-Netlify-Portfolio'
+            target='_blank'
+            color='inherit'
+            onClick={(event) => event.preventDefault}
+            style={{ textDecoration: 'none' }}
+          >
+            <IconButton aria-label='delete'>
+              <Avatar
+                className={avatarClasses.avatar}
+                alt='Github icon link to site repo'
+              >
+                <GitHub />
+              </Avatar>
+            </IconButton>
+          </Link>
+        </Tooltip>
+        <Tooltip title='Hosted via Netlify'>
+          <Link
+            href='https://www.netlify.com/'
+            target='_blank'
+            color='inherit'
+            onClick={(event) => event.preventDefault}
+            style={{ textDecoration: 'none' }}
+          >
+            <IconButton aria-label='delete'>
+              <Avatar
+                className={avatarClasses.avatar}
+                alt='Netlify icon link to netlify home page'
+              >
+                <SiNetlify />
+              </Avatar>
+            </IconButton>
+          </Link>
+        </Tooltip>
+      </div>
     </Drawer>
   )
 }
