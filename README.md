@@ -1,8 +1,8 @@
 # Portfolio site for [J. Harris Web Dev](https://jharriswebdev.com/)
 
-## Site hosted on [Netlify](https://www.netlify.com/) via [GitHub](https://github.com/jharris711/React-Netlify-Portfolio).
+<img width="1792" alt="Screen Shot 2021-05-10 at 2 58 57 PM" src="https://user-images.githubusercontent.com/49429928/117710607-4f678480-b1a0-11eb-834d-458efb6fc261.png">
 
----
+## Site hosted on [Netlify](https://www.netlify.com/) via [GitHub](https://github.com/jharris711/React-Netlify-Portfolio).
 
 ###### Dependencies:
 
@@ -33,6 +33,7 @@
 
 - [React](https://reactjs.org/)
 - [Material UI](https://material-ui.com/)
+- [Notistack](https://www.iamhosseindhv.com/notistack)
 - [Leaflet](https://leafletjs.com/)
 - [Leaflet Plugins](https://leafletjs.com/plugins.html)
 - [Netlify](https://www.netlify.com/)
