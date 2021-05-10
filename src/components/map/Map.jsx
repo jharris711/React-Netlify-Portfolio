@@ -157,7 +157,7 @@ const Map = ({ lightOrDark, prefersDarkMode }) => {
       '.leaflet-routing-container'
     ).style.backgroundColor =
       lightOrDark === 'dark'
-        ? '#383838'
+        ? 'rgba(38, 38, 38, 0.9'
         : lightOrDark === 'dark'
         ? 'rgba(255, 255, 255, 0.8)'
         : prefersDarkMode
@@ -293,7 +293,7 @@ const Map = ({ lightOrDark, prefersDarkMode }) => {
       '.leaflet-routing-container'
     ).style.backgroundColor =
       lightOrDark === 'dark'
-        ? '#383838'
+        ? 'rgba(38, 38, 38, 0.9)'
         : lightOrDark === 'dark'
         ? 'rgba(255, 255, 255, 0.8)'
         : prefersDarkMode
