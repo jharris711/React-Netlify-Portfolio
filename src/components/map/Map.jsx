@@ -201,7 +201,7 @@ const Map = () => {
               <li>
                 <strong>Routing</strong>: Initially set to show directions
                 between the AFI Theatre in Silver Spring, MD and the Verizon
-                Center in Washington, DC. you can set the start/end points by
+                Center in Washington, DC. You can set the start/end points by
                 dragging the markers to the desired points on the map. You can
                 also set your location as the start point with the location
                 button to the right, then search for and set the endpoint with
