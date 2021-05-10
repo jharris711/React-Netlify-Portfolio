@@ -47,7 +47,7 @@ const App = () => {
   const containerClasses = containerStyles()
   const mapDivRef = useRef(null)
   const [mapDivHeight, setMapDivHeight] = useState(null)
-  const [lightOrDark, setLightOrDark] = useState('user')
+  const [lightOrDark, setLightOrDark] = useState(null)
 
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
 
@@ -66,8 +66,18 @@ const App = () => {
 
   const toggleLightOrDark = (event) => {
     const mode = event.currentTarget.value
+    localStorage.setItem('mode', mode)
     setLightOrDark(mode)
   }
+
+  useEffect(() => {
+    const mode = localStorage.getItem('mode')
+    if (mode) {
+      setLightOrDark(mode)
+    } else {
+      setLightOrDark('user')
+    }
+  }, [])
 
   useEffect(() => {
     mapDivRef.current = document.getElementById('mapDiv')
