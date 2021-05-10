@@ -175,10 +175,10 @@ const Map = () => {
             </h1>
             <div></div>
             <h3>
-              To the left, you can find the links to my work history, blogs,
-              demos, and more.
+              To the left, you can find all the important links. Head to
+              LinkedIn to see my work history, Medium to read some articles I've
+              written, and Stack Blitz to see some live demos!
             </h3>
-            <br />
             <hr />
             <h3>
               This map was built using the awesome, lightweight, and open-source
