@@ -52,6 +52,13 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     width: drawerWidth,
   },
+  drawerSmallScreen: {
+    width: `100%`,
+    flexShrink: 0,
+  },
+  drawerPaperSmallScreen: {
+    width: `100%`,
+  },
   image: {
     width: theme.spacing(20),
     height: theme.spacing(20),
@@ -60,16 +67,16 @@ const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
 }))
 
-const NavDrawer = ({ lightOrDark, toggleLightOrDark }) => {
+const NavDrawer = ({ matches, lightOrDark, toggleLightOrDark }) => {
   const classes = useStyles()
   const avatarClasses = avatarStyles()
 
   return (
     <Drawer
-      className={classes.drawer}
+      className={matches ? classes.drawer : classes.drawerSmallScreen}
       variant='permanent'
       classes={{
-        paper: classes.drawerPaper,
+        paper: matches ? classes.drawerPaper : classes.drawerPaperSmallScreen,
       }}
       anchor='left'
     >
